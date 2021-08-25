@@ -26,7 +26,7 @@ public class ContactCreationTests {
   @Test
   public void testContactCreationTests() throws Exception {
     initContactCreation();
-    fillContactForm();
+    fillContactForm("Goose", "Alekseevich", "Mr", "kanes173");
     saveContact();
     goToHomePage();
     logout();
@@ -40,17 +40,17 @@ public class ContactCreationTests {
     driver.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  private void fillContactForm() {
+  private void fillContactForm(String firstname, String middlename, String lastname, String nickname) {
     driver.findElement(By.name("firstname")).click();
     driver.findElement(By.name("firstname")).clear();
-    driver.findElement(By.name("firstname")).sendKeys("Goose");
+    driver.findElement(By.name("firstname")).sendKeys(firstname);
     driver.findElement(By.name("middlename")).clear();
-    driver.findElement(By.name("middlename")).sendKeys("Alekseevich");
+    driver.findElement(By.name("middlename")).sendKeys(middlename);
     driver.findElement(By.name("lastname")).clear();
-    driver.findElement(By.name("lastname")).sendKeys("Mr");
+    driver.findElement(By.name("lastname")).sendKeys(lastname);
     driver.findElement(By.name("nickname")).click();
     driver.findElement(By.name("nickname")).clear();
-    driver.findElement(By.name("nickname")).sendKeys("kanes173");
+    driver.findElement(By.name("nickname")).sendKeys(nickname);
   }
 
   private void initContactCreation() {
