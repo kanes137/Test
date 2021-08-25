@@ -1,12 +1,8 @@
 package ru.stqa.pft.addressbook;
 
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
-import static org.testng.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class ContactCreationTests {
   private WebDriver driver;
@@ -14,18 +10,37 @@ public class ContactCreationTests {
   @BeforeClass(alwaysRun = true)
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
+    login("admin", "secret");
+  }
+
+  private void login(String username, String password) {
+    driver.get("http://localhost/addressbook/index.php");
+    driver.findElement(By.name("user")).click();
+    driver.findElement(By.name("user")).clear();
+    driver.findElement(By.name("user")).sendKeys(username);
+    driver.findElement(By.name("pass")).clear();
+    driver.findElement(By.name("pass")).sendKeys(password);
+    driver.findElement(By.xpath("//input[@value='Login']")).click();
   }
 
   @Test
   public void testContactCreationTests() throws Exception {
-    driver.get("http://localhost/addressbook/index.php");
-    driver.findElement(By.name("user")).click();
-    driver.findElement(By.name("user")).clear();
-    driver.findElement(By.name("user")).sendKeys("admin");
-    driver.findElement(By.name("pass")).clear();
-    driver.findElement(By.name("pass")).sendKeys("secret");
-    driver.findElement(By.xpath("//input[@value='Login']")).click();
-    driver.findElement(By.linkText("add new")).click();
+    initContactCreation();
+    fillContactForm();
+    saveContact();
+    goToHomePage();
+    logout();
+  }
+
+  private void goToHomePage() {
+    driver.findElement(By.linkText("home page")).click();
+  }
+
+  private void saveContact() {
+    driver.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+  }
+
+  private void fillContactForm() {
     driver.findElement(By.name("firstname")).click();
     driver.findElement(By.name("firstname")).clear();
     driver.findElement(By.name("firstname")).sendKeys("Goose");
@@ -36,8 +51,13 @@ public class ContactCreationTests {
     driver.findElement(By.name("nickname")).click();
     driver.findElement(By.name("nickname")).clear();
     driver.findElement(By.name("nickname")).sendKeys("kanes173");
-    driver.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
-    driver.findElement(By.linkText("home page")).click();
+  }
+
+  private void initContactCreation() {
+    driver.findElement(By.linkText("add new")).click();
+  }
+
+  private void logout() {
     driver.findElement(By.linkText("Logout")).click();
   }
 
