@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class ContactCreationTests {
   private WebDriver driver;
 
-  @BeforeClass(alwaysRun = true)
+  @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
     driver = new FirefoxDriver();
     login("admin", "secret");
@@ -61,7 +61,7 @@ public class ContactCreationTests {
     driver.findElement(By.linkText("Logout")).click();
   }
 
-  @AfterClass(alwaysRun = true)
+  @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
     driver.quit();
   }
