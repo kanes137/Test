@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.pft.addressbook.ContactData;
 
 public class ContactCreationTests {
   private WebDriver driver;
