@@ -1,6 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
-import model.ContactData;
+import ru.stqa.pft.addressbook.model.ContactData;
 import org.testng.annotations.Test;
 
 public class ContactCreationTests extends TestBase {
@@ -8,7 +8,7 @@ public class ContactCreationTests extends TestBase {
   @Test
   public void testContactCreation() throws Exception {
     app.getContactHelper().initContactCreation();
-    app.getContactHelper().fillContactForm(new ContactData("Goose", "Alekseevich", "Mr", "kanes173"));
+    app.getContactHelper().fillContactForm(new ContactData("Goose", "Alekseevich", "Mr", "kanes173", "test1"));
     app.getContactHelper().saveContact();
     app.getNavigationHelper().goToHomePage();
   }

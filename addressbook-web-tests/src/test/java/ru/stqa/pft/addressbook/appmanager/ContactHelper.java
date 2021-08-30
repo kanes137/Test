@@ -1,9 +1,10 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import model.ContactData;
+
+import org.openqa.selenium.support.ui.Select;
+import ru.stqa.pft.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import ru.stqa.pft.addressbook.appmanager.HelperBase;
 
 public class ContactHelper extends HelperBase {
 
@@ -20,6 +21,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("middlename"), contactData.getMiddlename());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("nickname"), contactData.getNickname());
+    
+    if (isElementPresent(By.name("new_group"))){
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    }
   }
 
   public void initContactCreation() {
