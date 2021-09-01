@@ -48,4 +48,10 @@ public class ContactHelper extends HelperBase {
   public void submitContactModification() {
     click(By.xpath("//div[@id='content']/form/input[22]"));
   }
+
+  public void createContact(ContactData contactData, boolean creation) {
+    initContactCreation();
+    fillContactForm(new ContactData("Goose", "Alekseevich", "Mr", "kanes173", "test1"), true);
+    saveContact();
+  }
 }
