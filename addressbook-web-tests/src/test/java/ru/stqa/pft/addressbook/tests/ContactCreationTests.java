@@ -10,7 +10,7 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() throws Exception {
     app.goTo().groupPage();
     if (! app.group().isThereAGroup()) {
-      app.group().create(new GroupData("test1", "test2", "test3"));
+      app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
     }
     app.getContactHelper().createContact(new ContactData("Goose", "Alekseevich", "Mr", "kanes173", "test1"), true);
   }

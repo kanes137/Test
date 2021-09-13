@@ -10,7 +10,7 @@ public class ContactModificationTests extends TestBase {
   public void testModificationContact() {
     app.goTo().groupPage();
     if (! app.group().isThereAGroup()) {
-      app.group().create(new GroupData("test1", "test2", "test3"));
+      app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
     }
     app.goTo().home();
     if (! app.getContactHelper().isThereAContact()) {
