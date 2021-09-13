@@ -8,11 +8,11 @@ public class ContactModificationTests extends TestBase {
 
   @Test(enabled = false)
   public void testModificationContact() {
-    app.getNavigationHelper().goToGroupPage();
-    if (! app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData("test1", "test2", "test3"));
+    app.goTo().groupPage();
+    if (! app.group().isThereAGroup()) {
+      app.group().create(new GroupData("test1", "test2", "test3"));
     }
-    app.getNavigationHelper().goHome();
+    app.goTo().home();
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Goose", "Alekseevich", "Mr", "kanes173", "test1"), true);
     }

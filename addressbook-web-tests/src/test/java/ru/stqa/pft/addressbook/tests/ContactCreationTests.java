@@ -8,9 +8,9 @@ public class ContactCreationTests extends TestBase {
 
   @Test(enabled = false)
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().goToGroupPage();
-    if (! app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup(new GroupData("test1", "test2", "test3"));
+    app.goTo().groupPage();
+    if (! app.group().isThereAGroup()) {
+      app.group().create(new GroupData("test1", "test2", "test3"));
     }
     app.getContactHelper().createContact(new ContactData("Goose", "Alekseevich", "Mr", "kanes173", "test1"), true);
   }
