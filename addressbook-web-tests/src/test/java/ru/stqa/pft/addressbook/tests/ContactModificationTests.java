@@ -1,24 +1,41 @@
 package ru.stqa.pft.addressbook.tests;
 
 import ru.stqa.pft.addressbook.model.ContactData;
-import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase {
 
-  @Test(enabled = false)
-  public void testModificationContact() {
+  @BeforeMethod
+  public void ensurePreconditions() {
     app.goTo().groupPage();
-    if (! app.group().isThereAGroup()) {
-      app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
+    if (app.group().all().size() == 0) {
+      app.group().create(new GroupData()
+              .withName("test1").withHeader("Модификация").withFooter("Модификация"));
     }
     app.goTo().home();
-    if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Goose", "Alekseevich", "Mr", "kanes173", "test1"), true);
+    if (app.contact().all().size() == 0) {
+      app.contact().create(new ContactData()
+              .withFirstname("Модиф").withMiddlename("Модиф").withLastname("Модиф").withNickname("Модиф").withGroup("test1"), true);
     }
-    app.getContactHelper().selectContact();
-    app.getContactHelper().initContactModification();
-    app.getContactHelper().fillContactForm(new ContactData("Goose", "Aleks", "Mr", "vaniko", null), false);
-    app.getContactHelper().submitContactModification();
+  }
+
+  @Test
+  public void testModificationContact() {
+    Contacts before = app.contact().all();
+    ContactData modifyContact = before.iterator().next();
+    ContactData contact = new ContactData()
+            .withId(modifyContact.getId()).withFirstname("Модиф1").withMiddlename("test").withLastname("Модиф").withNickname("Модиф").withGroup(null);
+    app.contact().modify(contact);
+    app.goTo().home();
+    Contacts after = app.contact().all();
+    assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.without(modifyContact).withAdded(contact)));
   }
 }
