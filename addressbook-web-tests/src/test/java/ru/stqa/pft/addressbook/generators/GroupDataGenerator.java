@@ -14,10 +14,10 @@ import java.util.List;
 
 public class GroupDataGenerator {
 
-  @Parameter(names = "-c", description = "Group count")
+  @Parameter(names = "-c", description = "Group count")//names указываем у необходимых параметров в конфигурации запуска приложения
   public int count;
 
-  @Parameter(names = "-f", description = "Target file")
+  @Parameter(names = "-f", description = "Target file")//names указываем у необходимых параметров в конфигурации запуска приложения
   public String file;
 
   public static void main(String[] args) throws IOException {
@@ -26,7 +26,7 @@ public class GroupDataGenerator {
     try {
       jCommander.parse(args);
     } catch (ParameterException ex) {
-      jCommander.usage();
+      jCommander.usage();//usage() - Вывести на консоль инфу о том, как нужно правильно запускать программу
       return;
     }
     generator.run();
