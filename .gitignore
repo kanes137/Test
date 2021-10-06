@@ -21,3 +21,4 @@ addressbook-web-tests/out/test/classes/ru/stqa/pft/addressbook/tests/ContactModi
 addressbook-web-tests/out/test/classes/ru/stqa/pft/addressbook/tests/GroupCreationTests.class
 *.class
 addressbook-web-tests/src/test/resources/groups.csv
+*.log
