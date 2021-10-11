@@ -1,15 +1,34 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity //Аннотации @Entity и @Table(name = "group_list") объявляет класс GroupData привязанным к базе (Hibernate)
+@Table(name = "group_list") //Сопоставить название таблицы с Entity необходимо для Hibernate
 public class GroupData {
+  @Id //Атрибут id используется как идентификатор, по этому ему присваивается аннотация @Id (Hibernate)
+  @Column(name = "group_id") //с помощью аннотации @Column, атрибут id привязывается к столбцу БД group_id (Hibernate)
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column(name = "group_name") //с помощью аннотации @Column, атрибут name привязывается к столбцу БД group_name (Hibernate)
   private String name;
   @Expose
+  @Column(name = "group_header") //с помощью аннотации @Column, атрибут header привязывается к столбцу БД group_header (Hibernate)
+  @Type(type = "text") //Аннотация описания типа для Hibernate при ошибке "wrong column type encountered in column [group_footer]"
   private String header;
   @Expose
+  @Column(name = "group_footer") //с помощью аннотации @Column, атрибут footer привязывается к столбцу БД group_footer (Hibernate)
+  @Type(type = "text") //Аннотация описания типа для Hibernate при ошибке "wrong column type encountered in column [group_footer]"
   private String footer;
+  /*
+  //если бы название столбца БД совпадало с названием атрибута, то необхододимость в привязке отпала бы,
+  //т.к. Hibernate сопоставил название столбца в БД и атрибут автоматически
+   */
 
   public String getName() {
     return name;

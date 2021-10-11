@@ -14,6 +14,11 @@
     </appender>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--Фильтр выводимых на консоль сообщений, выводятся только необходимые - INFO или выше (WARN, ERROR).
+        В файл по прежнему будут выводиться все сообщения на уровне DEBUG-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
         <!-- encoders are assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
@@ -21,7 +26,7 @@
         </encoder>
     </appender>
 
-    <root level="INFO">
+    <root level="debug">
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />
     </root>
