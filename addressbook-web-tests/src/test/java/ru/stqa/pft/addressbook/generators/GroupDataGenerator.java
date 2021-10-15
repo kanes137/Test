@@ -16,6 +16,8 @@ import java.util.List;
 
 public class GroupDataGenerator {
 
+  //-c 3 -f src\test\resources\contacts.json -d json
+
   @Parameter(names = "-c", description = "Group count")//names указываем у необходимых параметров в конфигурации запуска приложения
   public int count;
 
