@@ -27,6 +27,16 @@
           </set>
         </option>
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$USER_HOME$/Desktop/pim-autotest-backend-develop" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$USER_HOME$/Desktop/pim-autotest-backend-develop" />
+          </set>
+        </option>
+      </GradleProjectSettings>
     </option>
   </component>
 </project>
